@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>구구단</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 개발용 -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      "use strict";
+      //   class GuGuDan extends React.Component {
+      //     state = {
+      //       first: Math.ceil(Math.random() * 9),
+      //       second: Math.ceil(Math.random() * 9),
+      //       value: "",
+      //       result: "",
+      //     };
+
+      //     input;
+      //     onSubmit = (e) => {
+      //       e.preventDefault();
+      //       if (
+      //         parseInt(this.state.value) ===
+      //         this.state.first * this.state.second
+      //       ) {
+      //         this.setState((prevState) => ({
+      //           result: `${prevState.value} 정답`,
+      //           first: Math.ceil(Math.random() * 9),
+      //           second: Math.ceil(Math.random() * 9),
+      //           value: "",
+      //         }));
+      //         this.input.focus();
+      //       } else {
+      //         this.setState({
+      //           result: "땡",
+      //           value: "",
+      //         });
+      //       }
+      //     };
+      //     onChange = (e) => {
+      //       console.log("e", e.target.value, typeof e.target.value);
+
+      //       this.setState({ value: e.target.value });
+      //     };
+
+      //     onRefInput = (c) => {
+      //       this.input = c;
+      //     };
+      //     render() {
+      //       console.log("렌더링");
+      //       return (
+      //         <React.Fragment>
+      //           <div>
+      //             {this.state.first}곱하기{this.state.second}는?
+      //           </div>
+      //           <form onSubmit={this.onSubmit}>
+      //             <input
+      //               type="number"
+      //               value={this.state.value}
+      //               onInput={this.onChange}
+      //               ref={(c) => {
+      //                 this.onRefInput;
+      //               }}
+      //             />
+      //             <button type="submit">입력</button>
+      //           </form>
+      //           <div>{this.state.result}</div>
+      //         </React.Fragment>
+      //       );
+      //     }
+      //   }
+
+      const GuGuDan = () => {
+        const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+        const [second, setSecond] = React.useState(
+          Math.ceil(Math.random() * 9)
+        );
+        const [value, setValue] = React.useState("");
+        const [result, setResult] = React.useState("");
+        const inputRef = React.useRef(null);
+
+        const onChangeInput = (e) => {
+          setValue(e.target.value);
+        };
+
+        const onSubmitForm = (e) => {
+          e.preventDefault();
+          if (parseInt(value) === first * second) {
+            setResult(`${value} 정답`);
+            setFirst(Math.ceil(Math.random() * 9));
+            setSecond(Math.ceil(Math.random() * 9));
+            setValue("");
+            inputRef.current.focus();
+          } else {
+            setValue("");
+            setResult("땡");
+            inputRef.current.focus();
+          }
+        };
+        console.log("렌더링");
+        return (
+          <React.Fragment>
+            <div>
+              {first} 곱하기 {second} 는?
+            </div>
+            <form onSubmit={onSubmitForm}>
+              <input value={value} onChange={onChangeInput} ref={inputRef} />
+              <button id="button">입력!</button>
+            </form>
+            <div id="result">{result}</div>
+          </React.Fragment>
+        );
+      };
+    </script>
+    <script type="text/babel">
+      // ReactDOM.render(<LikeButton/>, document.querySelector('#root')); // React 17 버전 코드
+      ReactDOM.createRoot(document.querySelector("#root")).render(
+        <div>
+          <GuGuDan />
+          <GuGuDan />
+          <GuGuDan />
+        </div>
+      ); // React 18 버전 코드
+    </script>
+  </body>
+</html>
