@@ -39,8 +39,8 @@ module.exports = {
   ],
   output: {
     filename: "app.js",
-    path: path.join(__dirname, "dist"),
-    publicPath: "/dist",
+    path: path.join(__dirname, "dist"), // 실제 경로
+    publicPath: "/dist", // app.use('/dist',) -> 가상경로
   },
   devServer: {
     // publicPath: "/dist/",

@@ -29,10 +29,12 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: "app.js",
-    publicPath: "/dist/",
+    publicPath: "/dist",
   }, // 출력
   devServer: {
     // publicPath: "/dist/",
+    devMiddleware: { publicPath: "/dist" },
+    static: { directory: path.resolve(__dirname) },
     hot: true,
   },
 };
