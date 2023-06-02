@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "rockpaperscissors",
+=======
+  "name": "rockpapersicssor",
+>>>>>>> 390d6b6784f8d8d7de5b10b125bf439210a8dbf6
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,13 +19,21 @@
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
+<<<<<<< HEAD
     "@babel/preset-react": "^7.22.3",
+=======
+>>>>>>> 390d6b6784f8d8d7de5b10b125bf439210a8dbf6
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "babel-loader": "^9.1.2",
     "html-webpack-plugin": "^5.5.1",
     "react-refresh": "^0.14.0",
     "webpack": "^5.84.1",
     "webpack-cli": "^5.1.1",
+<<<<<<< HEAD
     "webpack-dev-server": "^4.15.0"
+=======
+    "webpack-dev-server": "^4.15.0",
+    "@babel/preset-react": "^7.22.3"
+>>>>>>> 390d6b6784f8d8d7de5b10b125bf439210a8dbf6
   }
 }
