@@ -4,12 +4,13 @@ import { TableContext } from "./MineSearch";
 
 const Table = () => {
   const { tableData } = useContext(TableContext);
+ 
   return (
     <table>
-      {Array()
+      {Array(tableData.length)
         .fill()
         .map((tr, i) => (
-          <Tr />
+          <Tr rowIndex={i}/>
         ))}
     </table>
   );
