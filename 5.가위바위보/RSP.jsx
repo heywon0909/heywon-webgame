@@ -1,9 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-
-// 클래스의 경우 -> constructor -> render -> ref -> componentDidMount
-// (setState/props 바뀔때) -> shouldComponentUpdate(true) -> render -> componentDidUpdate
-// 부모가 나를 없앴을 때 -> componentWillUnmount -> 소멸
-
+import React, { useState, useRef, useEffect } from "react";
+import useInterval from "./useInterval";
 const rspCoords = {
   바위: "0",
   가위: "-142px",
@@ -21,53 +17,81 @@ const computerChoice = (imgCoord) => {
     return v[1] === imgCoord;
   })[0];
 };
+
+//                        result, imgCoord, score
+// componentDidMount
+// componentDidUpdate
+// componentWillUnmount
+
+// componentDidMount() {
+//   this.setState({
+//     imgCoord: 3,
+//     score: 1,
+//     result: 2,
+//   })
+// }
+
+// useEffect(() => {
+//   setImgCoord();
+//   setScore();
+// }, [imgCoord, score]);
+// useEffect(() => {
+//   setResult();
+// }, [result]);
+
 const RSP = () => {
   const [result, setResult] = useState("");
   const [imgCoord, setImgCoord] = useState(rspCoords.바위);
   const [score, setScore] = useState(0);
-  const interval = useRef();
+  const [isRunning, setIsRunning] = useState(true);
 
-  useEffect(() => {
-    // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
-    interval.current = setInterval(changeHand, 100);
-    return () => {
-      // componentWillUnmount 역할
-      clearInterval(interval.current);
-    };
-  }, [imgCoord]);
+  //   const interval = useRef();
+
+  //   useEffect(() => {
+  //     // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
+  //     console.log("다시 실행");
+  //     interval.current = setInterval(changeHand, 100);
+  //     return () => {
+  //       // componentWillUnmount 역할
+  //       console.log("종료");
+  //       clearInterval(interval.current);
+  //     };
+  //   }, [imgCoord]);
 
   const changeHand = () => {
     if (imgCoord === rspCoords.바위) {
-      setImgCoord({ imgCoord: rspCoords.가위 });
+      setImgCoord(rspCoords.가위);
     } else if (imgCoord === rspCoords.가위) {
-      setImgCoord({ imgCoord: rspCoords.보 });
+      setImgCoord(rspCoords.보);
     } else if (imgCoord === rspCoords.보) {
-      setImgCoord({ imgCoord: rspCoords.바위 });
+      setImgCoord(rspCoords.바위);
     }
   };
+
+  useInterval(changeHand, isRunning ? 100 : null);
 
   const onClickBtn = (choice) => () => {
-    if (interval.current) {
-      clearInterval(interval.current);
-      interval.current = null;
-    }
+    if (isRunning) {
+      setIsRunning(false);
 
-    const myScore = scores[choice];
-    const cpuScore = scores[computerChoice(imgCoord)];
-    const diff = myScore - cpuScore;
-    if (diff === 0) {
-      setResult({ result: "비겼습니다" });
-    } else if ([-1, 2].includes(diff)) {
-      setResult({ result: "이겼습니다!" });
-      setScore((prevScore) => prevScore + 1);
-    } else {
-      setResult({ result: "졌습니다!" });
-      setScore((prevState) => prevState.score - 1);
+      const myScore = scores[choice];
+      const cpuScore = scores[computerChoice(imgCoord)];
+      const diff = myScore - cpuScore;
+      if (diff === 0) {
+        setResult("비겼습니다!");
+      } else if ([-1, 2].includes(diff)) {
+        setResult("이겼습니다!");
+        setScore((prevScore) => prevScore + 1);
+      } else {
+        setResult("졌습니다!");
+        setScore((prevScore) => prevScore - 1);
+      }
+      setTimeout(() => {
+        setIsRunning(true);
+      }, 1000);
     }
-    setTimeout(() => {
-      interval.current = setInterval(changeHand, 100);
-    }, 1000);
   };
+
   return (
     <>
       <div
@@ -94,3 +118,18 @@ const RSP = () => {
 };
 
 export default RSP;
+
+//                    result imgCoord score
+// componentDidMount
+// componentDidUpdate
+// componentWillUnmount
+// componentDidMount(){
+//  this.setState({imgCoord,
+//   score:1,
+//   result:2})
+//}
+// useEffect(()=>{
+//     setImgCoord();
+//     setScored();
+//
+// },[imgCoord,scores])
