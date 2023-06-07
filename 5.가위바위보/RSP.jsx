@@ -1,11 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import useInterval from "./useInterval";
+import React, { useEffect, useRef, useState } from "react";
+
+// 클래스의 경우 -> constructor -> render -> ref -> componentDidMount
+// (setState/props 바뀔때) -> shouldComponentUpdate(true) -> render -> componentDidUpdate
+// 부모가 나를 없앴을 때 -> componentWillUnmount -> 소멸
+
 const rspCoords = {
   바위: "0",
   가위: "-142px",
   보: "-284px",
 };
-
 const scores = {
   가위: 1,
   바위: 0,

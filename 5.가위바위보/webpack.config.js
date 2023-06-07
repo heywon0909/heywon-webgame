@@ -4,7 +4,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 module.exports = {
-  name: "RSP",
+  name: "number-baseball-dev",
   mode: "development",
   devtool: "inline-source-map",
   resolve: {
