@@ -1,52 +1,26 @@
 const path = require("path");
-const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const webpack = require("webpack");
+
 module.exports = {
-  name: "word-relay-setting",
-  mode: "development",
-  devtool: "eval",
+  mode: "development", // production
+  devtool: "eval", // hidden-source-map -> 그냥 source-map 쓰면 개발자 도구 탭에 노출됨..
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".jsx", ".js", ".ts", ".tsx"],
   },
   entry: {
-    app: ["./client"],
-  }, // 입력
+    app: "./client",
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: [
-            "@babel/plugin-proposal-class-properties",
-            "react-refresh/babel",
-          ],
-        },
+        test: /\.tsx?$/,
+        loader: "ts-loader",
       },
     ],
   },
-  plugins: [new RefreshWebpackPlugin()],
+  plugins: [],
   output: {
+    filename: "[name].js",
     path: path.join(__dirname, "dist"),
-    filename: "app.js",
-    publicPath: "/dist",
-  }, // 출력
-  devServer: {
-    // publicPath: "/dist/",
-    devMiddleware: { publicPath: "/dist" },
-    static: { directory: path.resolve(__dirname) },
-    hot: true,
   },
 };
-// "devDependencies": {
-//   // jsx 문법
-//   "@babel/preset-react": "^7.18.6",
-//   // 웹팩과 바벨연결
-//   "babel-loader": "^9.1.2",
-//   // 최신문법으로
-//   "@babel/core": "^7.21.8",
-//   // 환경에 맞게 -> 자동으로 옛날 브라우저 지원해줌
-//   "@babel/preset-env": "^7.21.5",
-//   "webpack": "^5.83.1",
-//   "webpack-cli": "^5.1.1"
-// }
