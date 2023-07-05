@@ -43,4 +43,3 @@ module.exports = {
     hot: true
   }
 };
-export default config;
