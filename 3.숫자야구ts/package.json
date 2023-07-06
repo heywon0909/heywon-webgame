@@ -4,21 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "-": "^0.0.1",
+    "D": "^1.0.0",
+    "esbuild-register": "^3.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.6"
   },
   "devDependencies": {
+    "@babel/register": "^7.22.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
+    "@swc/register": "^0.1.10",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "babel-loader": "^9.1.2",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
+    "sucrase": "^3.32.0",
     "ts-loader": "^9.4.4",
+    "ts-node": "^10.9.1",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
