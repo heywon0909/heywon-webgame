@@ -1,8 +1,7 @@
 import * as React from "react";
 import Try from "./Try";
 import { TryInfo } from "./types";
-
-const { Component, createRef } = React;
+import { Component, createRef } from "react";
 
 function getNumbers() {
   const candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
