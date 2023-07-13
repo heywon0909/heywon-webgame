@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "-": "^0.0.1",
-    "D": "^1.0.0",
     "esbuild-register": "^3.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
