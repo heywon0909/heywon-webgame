@@ -118,3 +118,5 @@ class RSP extends Component<{}, State> {
     );
   }
 }
+
+export default RSP;

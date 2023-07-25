@@ -1,5 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import GuGuDan from "./GuGuDan";
+import Games from "./Games";
 
-ReactDOM.render(<GuGuDan />, document.querySelector("#root"));
+ReactDOM.render(<Games />, document.querySelector("#root"));
