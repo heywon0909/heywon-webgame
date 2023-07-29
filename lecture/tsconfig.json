@@ -1,9 +1,10 @@
 {
-    "compilerOptions": {
-        "strict": true,
-        "lib":["es5","es2015","es2016","es2017","dom"],
-        "jsx":"react"
-    }
-
-
+  "compilerOptions": {
+    "strict": true,
+     "moduleResolution": "node",
+    "lib": ["es5", "es2015", "es2016", "es2017", "dom"],
+    // includes -> es2016
+    "jsx": "react",
+    "esModuleInterop": true
+  }
 }

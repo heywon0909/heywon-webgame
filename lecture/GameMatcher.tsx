@@ -1,28 +1,32 @@
-import * as React from "react";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
-import NumberBaseball from "../3.숫자야구/NumberBaseballClass";
-import RSP from "../5.가위바위보/RSPClass";
-import Lotto from "../6.로또/LottoClass";
+import * as React from 'react';
+import NumberBaseballClass from '../3.숫자야구ts/NumberBaseballClass'
+// import RSPClass from '../5.가위바위보ts/RSPClass';
+// import LottoClass from '../6.로또ts/LottoClass'
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
+
+
+
+
+
 
 const GameMatcher = () => {
-  const match = useRouteMatch<{ name: string }>();
-  const location = useLocation();
-  const history = useHistory();
+    const match = useRouteMatch<{name:string}>();
+    const location = useLocation();
+    const history = useHistory();
+   
+        if (!match) return null;
+        let urlSearchParams = new URLSearchParams(location.search.slice(1)); // 쿼리스트링
+        console.log(urlSearchParams.get('hello'));
+        if (match.params.name === 'number-baseball') {
+            return <NumberBaseballClass/>
+        } else if (match.params.name === 'rock-scissors-paper') {
+            return null
+        } else if (match.params.name === 'lotto-generator') {
+            return null
+        }
+    
+    
 
-  if (!match) {
-    return <div>일치하는 게임이 없습니다.</div>;
-  }
-  let urlSearchParams = new URLSearchParams(location.search.slice(1));
-  console.log(urlSearchParams.get("page"));
-  if (match.params.name === "number-baseball") {
-    return <NumberBaseball />;
-  } else if (match.params.name === "rock-scissors-paper") {
-    return <RSP />;
-  } else if (match.params.name === "lotto-generator") {
-    return <Lotto />;
-  } else {
-    return <div>일치하는 게임이 없습니다.</div>;
-  }
-};
+}
 
 export default GameMatcher;

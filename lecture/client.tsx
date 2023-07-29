@@ -1,5 +1,14 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import Games from "./Games";
+import * as React from 'react';
+import {createRoot} from 'react-dom/client'
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<Games />, document.querySelector("#root"));
+import store from './store';
+import App from './AppClass';
+
+
+const domNode = document.getElementById('root');
+const root = createRoot(domNode!);
+root.render(
+<Provider store={store}>
+    <App />
+  </Provider>);
